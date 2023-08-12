@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+    <meta http-equiv="CONTENT-TYPE" content="text/html; charset=us-ascii">
+
+    <title></title>
+    <style type="text/css">
+        <!--
+        @page { margin: 2cm }
+        P { margin-bottom: 0.21cm; text-align: justify }
+        H1 { margin-bottom: 0.21cm; text-align: center }
+        H1.western { font-family: "Liberation Sans", sans-serif; font-size: 16pt }
+        H1.cjk { font-family: "DejaVu Sans"; font-size: 16pt }
+        H1.ctl { font-family: "DejaVu Sans"; font-size: 16pt }
+        H2 { margin-bottom: 0.21cm }
+        H2.western { font-family: "Liberation Sans", sans-serif; font-size: 14pt; font-style: italic }
+        H2.cjk { font-size: 14pt; font-style: italic }
+        H2.ctl { font-size: 14pt; font-style: italic }
+        body {text-rendering: geometricPrecision;}
+        -->
+    </style>
+    <style type="text/css">
+        p.c3 {font-family: Liberation Mono, monospace}
+        div.c2 {text-align: center}
+        div.c1 {font-family: Liberation Sans, sans-serif; font-size: 20pt; font-weight: bold; text-align: center}
+    </style>
+</head>
+
+<body lang="fr-FR" dir="ltr" style="padding-right: 10px;">
+
+<div class="c1">
+    FullSWOF-transfer_UI user manual
+</div>
+
+<div class="c2">
+    Version 1.00.00 (2023-03-14)
+</div>
+
+
+<div class="c2">
+    Compatible with
+    FullSWOF_1D Version 2.00.00.
+</div>
+
+<p></p>
+
+<div class="c2">
+    2022-06-23
+</div>
+
+<br>
+<h1 class="western">Install and run FullSWOF-transfer_UI</h1>
+
+<p>You must have Java version 1.8 or higher to be able to run FullSWOF-transfer_UI.</p>
+
+<p class="western">The FullSWOF development team uses Java version 11 to verify the proper functioning of FullSWOF-transfer_UI.
+    Thus, we guarantee its use with Java version 11.<br/>
+    To check the version of Java that is installed on your machine, type the following command in a terminal:</p>
+
+<p class="c3">java -version</p>
+
+<p>It is not necessary to have FullSWOF_1D to launch FullSWOF-transfer_UI.</p>
+
+<p>To launch FullSWOF-transfer_UI from the command line,
+    go to the folder containing FullSWOF-transfer_UI.jar (without unzipping the file) and run the command:</p>
+
+<p class="c3">java -jar FullSWOF-transfer_UI.jar</p>
+
+<p>On some systems, it is possible to launch the application by right-clicking on the jar archive, opening it with Java.</p>
+
+<br>
+<h1 class="western">Preferences and help</h1>
+
+<p class="c4">When you have launched the interface using the command line above, the application opens.
+    By default, the application language matches the language of your computer.
+    It contains a horizontal menu bar. We find the Preferences menu where you can choose your language.
+    Choose between French and English, then be sure to restart the application, otherwise the change of language will not be done.</p>
+
+<p class="c4">Also in the horizontal menu bar, you will find a Help tab. You then have this interface user manual at your disposal, as well as information regarding FullSWOF-transfer_UI.</p>
+
+<br>
+<h1 class="western">Fonctionnalities</h1>
+
+<h2 class="western">Import a settings file</h2>
+
+<p class="c4">To reuse data from a file, you must use the command <i>'Open a parameters file'</i>.
+    This command will attempt to read data from a file formatted as the generated <i>transfer.txt</i> file.</p>
+
+<h2 class="western">Fill in the parameters</h2>
+
+<p class="c4">You can also start from scratch and create the <i>transfer.txt</i> file yourself.
+    FullSWOF-transfer_UI allows you to easily specify the
+    configuration parameters needed to launch FullSWOF.
+    Just fill in the different fields. Some fields use
+    integer values, and others decimals.</p>
+
+<p class="c4">For some fields, you are prompted for a file name. Select the browse button <i>'...'</i>,
+    then choose the appropriate file for that field.</p>
+
+<p class="c4">Also, when you switch tabs and then return to the previous tab, the settings are not lost.
+    You are free to fill in the fields in the order you wish.</p>
+
+<h2 class="western"> Error management</h2>
+
+<p class="c4">When a field is not filled, it appears in red. You can then fill it, the red color will disappear.</p>
+
+<p class="c4">If a field is incorrectly filled (for example, if a field expects an integer and you fill this field with a character string)
+    then this field will indicate an error with the color red.</p>
+
+<p class="c4">If you try to generate the file <i>transfer.txt</i> while there are errors or fields not filled, 
+    the application will indicate an error and will not generate the file.</p>
+
+<h2 class="western">File generation</h2>
+
+<p class="c4">If all the fields are filled in correctly, you will find a tab in the menu bar <i>File</i>, where there is a button
+    <i>Generate</i>. The file is generated; warning, if the file already exists, it will be overwritten (you will see a warning message).</p>
+
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <style type="text/css">
+        <!--
+        @page { margin: 2cm }
+        p { margin-bottom: 0.21cm; line-height: 100%; text-align: justify }
+        p.cjk { font-size: 10pt }
+        h1 { margin-bottom: 0.21cm; text-align: center }
+        h1.western { font-family: "Liberation Sans", sans-serif; font-size: 16pt }
+        h1.cjk { font-family: "DejaVu Sans"; font-size: 16pt }
+        h1.ctl { font-family: "DejaVu Sans"; font-size: 16pt }
+        h2 { margin-top: 0.42cm }
+        h2.western { font-family: "Liberation Sans", sans-serif; font-size: 14pt; font-style: italic }
+        h2.cjk { font-size: 14pt; font-style: italic }
+        h2.ctl { font-size: 14pt; font-style: italic }
+        p.code-western { margin-left: 1cm; margin-right: 1cm; margin-top: 0.2cm; margin-bottom: 0.2cm; border: 1px solid #000000; padding: 0.25cm; font-family: "Liberation Mono", monospace; font-size: 10pt; page-break-before: auto }
+        p.code-cjk { margin-left: 1cm; margin-right: 1cm; margin-top: 0.2cm; margin-bottom: 0.2cm; border: 1px solid #000000; padding: 0.25cm; font-size: 10pt; page-break-before: auto }
+        p.code-ctl { margin-left: 1cm; margin-right: 1cm; margin-top: 0.2cm; margin-bottom: 0.2cm; border: 1px solid #000000; padding: 0.25cm; page-break-before: auto }
+        div.c2 {text-align: center}
+        div.c1 {font-family: Liberation Sans, sans-serif; font-size: 20pt; font-weight: bold; text-align: center}
+        body {text-rendering: geometricPrecision;}
+        -->
+    </style>
+</head>
+
+<body lang="fr-FR" dir="ltr">
+<div class="c1">
+    Documentation développeur de FullSWOF-transfer_UI
+</div>
+
+<div class="c2">
+    Version 1.00.00 (2023-03-14)
+</div>
+
+<p></p>
+
+<div class="c2">
+    2022-06-23
+</div>
+
+<br>
+<h1 class="western">L'architecture</h1>
+
+<p class="western">L'architecture de FullSWOF-transfer_UI est faite de manière
+    à ajouter des menus ou encore des paramètres facilement, sans avoir à modifier tout le
+    code.</p>
+
+<p class="western"> Le code a été structuré en MVC (Modèle - Vue - Contrôleur).</p>
+
+<p class="western">Pour chaque onglet, il y a une classe dans laquelle se trouvent tous les différents paramètres (champs).</p>
+
+<h2 class="western">Package <i>Field</i></h2>
+
+<p class="western">Ce package comprend tous les différents types de champs qu'on utilise.
+    Si l'on veut créer un nouveau paramètre qui attend, par exemple, un entier, on se
+    place dans la classe correspondante à l'onglet dans lequel se trouve le paramètre, puis on déclare
+    en attribut :</p>
+
+<p class="code-western">IntegerField input1 = new IntegerField("tag");</p>
+
+<p class="western">On peut sp&eacute;cifier les bornes inf&eacute;rieure et sup&eacute;rieure de ce param&egrave;tre et pr&eacute;ciser si ces bornes sont atteintes.</p>
+
+<h2 class="western">Les tags</h2>
+
+<p class="western">Un système de tag a été mis en place. A la création d'un paramètre, comme vu ci-dessus, un tag est attendu.
+    Le tag correspond à un mot que l'on place dans le fichier <i>TransferParameters_file.properties</i>. Ce tag est lié à une
+    ligne qu'on retrouvera dans le fichier <i>transfer.txt</i>. Il y a un système de dépendance qui ajoutera correctement la bonne
+    valeur au tag correspondant.</p>
+
+<br>
+<h1 class="western">Créer une configuration</h1>
+
+<p class="western">Si vous voulez créer un nouvel onglet de paramètres, placez-vous dans le
+    package <i>View</i>, puis créez une classe portant le nom de votre nouvel onglet pour plus de lisibilité.
+    Dans cette classe, créez une fonction <i>build()</i> qui sera la fonction qui créera votre panel de paramètres.
+    Créez aussi la fonction :</p>
+
+<p class="code-western">public GeneralParameters(ResourceBundle rb) {
+    this.rb = rb;
+    }</p>
+
+<p class="western">Ensuite, placez-vous dans la classe <i>StaticView</i>, et ajoutez en attribut votre nouveau type d'onglet</p>
+
+<p class="code-western">NouvelOnglet nouvelOnglet;</p>
+
+<p class="western">Toujours dans la classe <i>StaticView</i>, placez les lignes :</p>
+
+<p class="code-western">nouvelOnglet = new NouvelOnglet(rb);</p>
+<p class="code-western">JPanel nouvelOngletPanel = nouvelOnglet.build(mainFrame);</p>
+<p class="code-western">PanelMenuButton NOButton = new PanelMenuButton("Title", panelMenu); <br>
+    NOButton.addAction(mainFrame, panelFormulaire, nouvelOngletPanel);</p>
+
+<p class="western">Enfin, pour ajouter des paramètres à l'onglet que vous venez de créer,
+    utilisez les différents fields existants comme déjà expliqué en début de manuel. N'oubliez pas d'ajouter le tag
+    que vous utilisez dans la déclaration de votre Field, dans le fichier <i>TransferParameters_file.properties</i> </p>
+
+<br>
+<h1 class="western">Localisation</h1>
+
+<p class="western">FullSWOF-transfer_UI est entièrement internationalisé,
+    c'est-à-dire que les messages utilisateurs ne sont pas écrits
+    directement dans le code. L'application charge à l'exécution les
+    messages depuis un fichier, ce qui permet de pouvoir choisir aisément
+    la langue. La localisation est le fait de fournir un fichier
+    contenant des traductions des messages dans une langue spécifique.
+    L'interface est actuellement localisée en français et en anglais.
+    </p>
+
+<p class="western">Les fichiers de localisation sont de simples
+    fichiers texte avec une liste de paires clé/valeur. Pour créer un
+    fichier de localisation, copiez le contenu du fichier par défaut
+    (cf. nommage des fichiers) et remplacez les valeurs par la traduction
+    appropriée. La clé doit rester identique. Si une clé est absente
+    de votre fichier, l'interface utilisera la valeur qui y est associé
+    dans le fichier par défaut.</p>
+
+<h2 class="western">Nommage des fichiers</h2>
+
+<p class="western">Les fichiers de localisation sont répartis dans
+    plusieurs dossiers situés dans le répertoire <i>/language</i>.
+    Dans ce dossier se trouvent plusieurs fichiers
+    dont le nom suit toujours le motif <i>nom_codePays.extension</i> (par
+    exemple <i>TransferParameters_fr.properties</i>). Pour qu'un fichier de
+    localisation soit pris en compte, il doit suivre ce motif. Le code
+    pays en question est un code à deux lettres défini par la norme ISO&nbsp;639.</p>
+
+<h2 class="western">Ajouter une langue</h2>
+
+<p class="western">Créez comme expliqué ci-dessus un nouveau fichier <i>.properties</i> avec la traduction
+    correpondant à la langue que vous voulez ajouter.</p>
+
+<p class="western">Ensuite, placez-vous dans la classe <i>StaticView</i>, puis regardez la fonction
+    <i>ActionPerformed</i> de <i>e2.addActionListener</i>. Ajoutez dans la liste <i>langue</i> le nom de votre nouvel
+    langue.</p>
+
+<p class="western">Enfin, dans  cette fonction, ajoutez une nouvelle condition :</p>
+
+<p class="code-western">if (choose.equals("newLangue")){<br>
+    Locale locale = new Locale("nouvelleLocalisation");<br>
+    controller.addUILanguage(locale);<br>
+    mainFrame.validate();<br>
+    mainFrame.repaint();<br>
+    }</p>
+
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+    <meta http-equiv="CONTENT-TYPE" content="text/html; charset=us-ascii">
+
+    <title></title>
+    <style type="text/css">
+        <!--
+        @page { margin: 2cm }
+        P { margin-bottom: 0.21cm; text-align: justify }
+        H1 { margin-bottom: 0.21cm; text-align: center }
+        H1.western { font-family: "Liberation Sans", sans-serif; font-size: 16pt }
+        H1.cjk { font-family: "DejaVu Sans"; font-size: 16pt }
+        H1.ctl { font-family: "DejaVu Sans"; font-size: 16pt }
+        H2 { margin-bottom: 0.21cm }
+        H2.western { font-family: "Liberation Sans", sans-serif; font-size: 14pt; font-style: italic }
+        H2.cjk { font-size: 14pt; font-style: italic }
+        H2.ctl { font-size: 14pt; font-style: italic }
+        body {text-rendering: geometricPrecision;}
+        -->
+    </style>
+    <style type="text/css">
+        p.c3 {font-family: Liberation Mono, monospace}
+        div.c2 {text-align: center}
+        div.c1 {font-family: Liberation Sans, sans-serif; font-size: 20pt; font-weight: bold; text-align: center}
+    </style>
+</head>
+
+<body lang="fr-FR" dir="ltr" style="padding-right: 10px;">
+
+<div class="c1">
+    Manuel d'utilisation de FullSWOF-transfer_UI
+</div>
+
+<div class="c2">
+    Version 1.00.00 (2023-03-14)
+</div>
+
+<div class="c2">
+    Compatible avec
+    FullSWOF_1D Version 2.00.00.
+</div>
+
+<p></p>
+
+<div class="c2">
+    2022-06-23
+</div>
+
+<br>
+<h1 class="western">Installer et ex&eacute;cuter FullSWOF-transfer_UI</h1>
+
+<p>Vous devez disposer de Java version 1.8 ou sup&eacute;rieure pour pouvoir
+    ex&eacute;cuter FullSWOF-transfer_UI.</p>
+
+<p class="western">L'&eacute;quipe de d&eacute;veloppement de FullSWOF utilise la version 11 de Java pour v&eacute;rifier le bon fonctionnement de FullSWOF-transfer_UI. Ainsi, nous garantissons son utilisation avec la version 11 de Java.<br/>
+    Pour v&eacute;rifier la version de Java qui est install&eacute;e sur votre machine, tapez la commande suivante dans un terminal :</p>
+
+<p class="c3">java -version</p>
+
+<p>Il n'est pas n&eacute;cessaire de disposer de
+    FullSWOF_1D pour lancer FullSWOF-transfer_UI.</p>
+
+<p>Pour lancer FullSWOF-transfer_UI en ligne de commande, placez-vous dans le dossier contenant
+    FullSWOF-transfer_UI.jar (sans d&eacute;compresser le fichier) et lancez la commande :</p>
+
+<p class="c3">java -jar FullSWOF-transfer_UI.jar</p>
+
+<p>Sur certains syst&egrave;mes, il est possible de lancer l'application par un
+    clic droit sur l'archive jar, en l'ouvrant avec Java.</p>
+
+<br>
+<h1 class="western">Pr&eacute;f&eacute;rences et aide</h1>
+
+<p class="c4">Lorsque vous avez lanc&eacute; l'interface &#xE0; l'aide de la ligne de commande ci-dessus, l'application s'ouvre.
+    Par d&eacute;faut, la langue de l'application correspond &#xE0; la langue de votre ordinateur. 
+    Elle contient une barre de menu horizontale. On retrouve le menu Pr&eacute;f&eacute;rences o&#xF9; vous pouvez choisir votre langue.
+    Choisissez entre fran&#xE7;ais et anglais, puis veillez &#xE0; relancer l'application, sans quoi le changement de langue ne sera pas fait.</p>
+
+<p class="c4">Toujours dans la barre de menu horizontale, vous retrouverez un onglet Aide. Vous avez alors &#xE0; votre disposition ce manuel d'utilisation de l'interface, ainsi que des informations concernant FullSWOF-transfer_UI. </p>
+
+<br>
+<h1 class="western">Les fonctionnalit&eacute;s</h1>
+
+<h2 class="western">Importer un fichier de param&egrave;tres</h2>
+
+<p class="c4">Pour r&eacute;utiliser des donn&eacute;es &agrave; partir d'un fichier, vous
+    devez utiliser la commande <i>'Ouvrir un fichier de param&egrave;tres'</i>.
+    Cette commande tentera de lire les donn&eacute;es issues d'un fichier
+    format&eacute; comme le fichier g&eacute;n&eacute;r&eacute; <i>transfer.txt.</i></p>
+
+<h2 class="western">Renseigner les param&egrave;tres</h2>
+
+<p class="c4">Vous pouvez aussi partir de rien et cr&eacute;er vous-m&#xEA;me le fichier <i>transfer.txt</i>.
+    FullSWOF-transfer_UI vous permet d'indiquer ais&eacute;ment les
+    param&egrave;tres de configuration n&eacute;cessaires pour lancer FullSWOF.
+    Il suffit de renseigner les diff&eacute;rents champs. Certains champs utilisent
+    des valeurs enti&egrave;res, et d'autres des d&eacute;cimaux.</p>
+
+<p class="c4">Pour certains champs, on vous demande un nom de fichier. S&eacute;lectionner le bouton parcourir <i>'...'</i>, puis choisissez le fichier adapt&eacute; &#xE0; ce champ.</p>
+
+<p class="c4">De plus, lorsque vous changez d'onglet puis revenez dans l'onglet pr&eacute;c&eacute;dent, les param&egrave;tres ne sont pas perdus. Vous &#xEA;tes libre de remplir les champs dans l'ordre que vous souhaitez.</p>
+
+<h2 class="western"> Gestion des erreurs</h2>
+
+<p class="c4">Lorsqu'un champ n'est pas rempli, il appara&#xEE;t en rouge. Vous pouvez alors le remplir, la couleur rouge dispara&#xEE;tra.</p>
+
+<p class="c4">Si un champ est mal rempli (par exemple, si un champ attend un entier et que vous remplissez ce champ par une cha&icirc;ne de caract&egrave;res) alors ce champ indiquera
+une erreur avec la couleur rouge.</p>
+
+<p class="c4">Si vous essayez de g&eacute;n&eacute;rer le fichier <i>transfer.txt</i> alors qu'il y a des erreurs ou des champs non remplis, l'application vous indiquera une erreur et ne g&eacute;n&eacute;rera pas le fichier.</p>
+
+<h2 class="western">G&eacute;n&eacute;ration du fichier</h2>
+
+<p class="c4">Dans le cas o&#xF9; tous les champs sont remplis correctement, vous trouverez dans la barre de menu un onglet <i>Fichier</i>, dans lequel se trouve un bouton
+<i>G&eacute;n&eacute;rer</i>. Le fichier est g&eacute;n&eacute;r&eacute; ; attention, si le fichier existe d&eacute;j&agrave;, il sera &eacute;cras&eacute; (un message vous pr&eacute;viendra). </p>
+
+</body>
+</html>

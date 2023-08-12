@@ -1,0 +1,341 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=us-ascii">
+
+  <title></title>
+  <style type="text/css">
+      <!--
+                @page { margin: 2cm }
+                P { margin-bottom: 0.21cm; text-align: justify; page-break-before: auto }
+                P.cjk { font-size: 10pt }
+                H1 { margin-bottom: 0.21cm; text-align: center }
+                H1.western { font-family: "Liberation Sans", sans-serif; font-size: 16pt }
+                H1.cjk { font-family: "DejaVu Sans"; font-size: 16pt }
+                H1.ctl { font-family: "DejaVu Sans"; font-size: 16pt }
+                H2 { margin-bottom: 0.21cm }
+                H2.western { font-family: "Liberation Sans", sans-serif; font-size: 14pt; font-style: italic }
+                H2.cjk { font-size: 14pt; font-style: italic }
+                H2.ctl { font-size: 14pt; font-style: italic }
+                body {text-rendering: geometricPrecision;}
+        -->
+  </style>
+  <style type="text/css">
+  p.c3 {font-family: Liberation Mono, monospace}
+  div.c2 {text-align: center}
+  div.c1 {font-family: Liberation Sans, sans-serif; font-size: 20pt; font-weight: bold; text-align: center}
+  </style>
+</head>
+
+<body lang="en-US" dir="ltr">
+  <div class="c1">
+    User manual of FullSWOF_UI
+  </div>
+
+  <div class="c2">
+    Version 2.00.00 (2020-06-12)
+  </div>
+
+  <h1 class="western">Installing and launching FullSWOF_UI</h1>
+
+  <p class="western">This version of FullSWOF_UI is compatible with
+  FullSWOF_1D Version 1.02.02 and FullSWOF_2D Version 1.09.01.</p>
+
+  <p class="western">You must have Java 1.8 or later installed to run FullSWOF_UI.</p>
+
+  <p class="western">The FullSWOF development team uses the version 11 of Java to test FullSWOF_UI.
+    So, when we make a new release, we guarantee that you can run FullSWOF_UI with the version 11 of Java.<br/>
+    To verify the version of Java installed on your system, you can use the following command in a terminal:</p>
+  
+  <p class="c3">java -version</p>
+
+  <p class="western">You do not need to have FullSWOF_1D or FullSWOF_2 to run
+  FullSWOF_UI, but you will not be able to run simulations without these
+  applications.</p>
+
+  <p class="western">To launch FullSWOF_UI in a terminal, use the following command in
+  the directory that contains the file FullSWOF_UI.jar (do not extract this file) :</p>
+
+  <p class="western c3">java -jar FullSWOF_UI.jar</p>
+
+  <p class="western">Depending on your system, you may be able to lauch FullSWOF_UI by
+  right-clicking on the .jar file and opening it with Java.</p>
+
+  <h1 class="western">FullSWOF parameters</h1>
+
+  <h2 class="western">Creating or opening a project</h2>
+
+  <p class="western">FullSWOF_UI allows you to work on project files with the extension
+  .fsp. Each project is linked to a FullSWOF configuration (either FullSWOF_1D or
+  FullSWOF_2D). To change the configuration used, choose a configuration in the
+  preferences (under 'FullSWOF') then create a new project. You can save the project with
+  <i>'File &gt; Save the project'</i> (Ctrl + S) or save it under a new name with
+  <i>'File &gt; Save project as ...'</i>. Saving the project will create a .fsp file and a
+  directory that contains the project data. This directory will also contain the output
+  files. Do not change the name of this directory.</p>
+
+  <h2 class="western">Importing a parameters file</h2>
+
+  <p class="western">In order to reuse data that was not created with FullSWOF_UI, you
+  must use the command <i>'Import a parameters file'</i>. This command will try to read
+  data from a file that follows the format of <i>parameters.txt</i>. Be sure to set the
+  right FullSWOF configuration (1D or 2D) when you create the project, before you import
+  the file.</p>
+
+  <h2 class="western">Set the parameters</h2>
+
+  <p class="western">FullSWOF_UI allows you to easily set the parameters needed to run
+  FullSWOF. You only have to set the values of the different fields. Some fields accept
+  integers, others decimal numbers. If the value is incorrect the field will be
+  highlighted in red. For more information about the different parameters, please read
+  the FullSWOF user manual.</p>
+
+  <p class="western">N.B. : Decimal numbers can be written using the standard notation
+  1.234 or the scientific notation 1.23e-4.</p>
+
+  <h2 class="western">Other files</h2>
+
+  <p class="western">You can visualize input files (such as topography files, huv files,
+  rain files) once you have indicated their path. The <i>'visualize'</i> button opens a
+  window showing a chart or a 3D representation of the file data. 3D figures can be
+  manipulated like those in output files view.</p>
+
+  <p class="western">When you indicate a path to an input file, FullSWOF_UI will try to
+  copy this file in the '<i>Inputs</i>' directory of the project. However this copy may
+  fail with very large files (2Gb or more). If this happens, manually copy the file in
+  the directory named <i>'Inputs'</i> and indicate this new file as parameter of the
+  project.</p>
+
+  <h2 class="western">Generating input files</h2>
+
+  <p class="western">You can generate input files using FullSWOF_UI. Rain files are
+  generated using a table of values, while huv and topography files may be created using
+  a formula parser. You can set a parameter according to the value of the variables x, y
+  and t, for example z = sin(x + y).</p>
+
+  <p class="western">You must set the domain parameters before you can generate these
+  files (under Space &amp; Time).</p>
+
+  <p class="western">Please note that variables x, y or t may not always be useful
+  (for example y in the case of a FullSWOF_1D file or t in the case of a spatial
+  description file). If this is the case, the value of this variable is 0.</p>
+
+  <p class="western">You can use the following functions :</p>
+
+  <ul>
+    <li>
+      <p class="western">abs(a) : Absolute value of a</p>
+    </li>
+
+    <li>
+      <p class="western">acos(a) : Arc cosine of a</p>
+    </li>
+
+    <li>
+      <p class="western">asin(a) : Arc sine of a</p>
+    </li>
+
+    <li>
+      <p class="western">atan(a) : Arc tangent de a</p>
+    </li>
+
+    <li>
+      <p class="western">atan2(x, y) : theta phase of the polar coordinates (r, theta)
+      of a point given with its Cartesian coordinates (x, y)</p>
+    </li>
+
+    <li>
+      <p class="western">cbrt(a) : Cube root of a</p>
+    </li>
+
+    <li>
+      <p class="western">ceil(a) : Smallest integer greater than or equal to a</p>
+    </li>
+
+    <li>
+      <p class="western">cos(a) : Cosine of a</p>
+    </li>
+
+    <li>
+      <p class="western">cosh(a) : Hyperbolic cosine of a</p>
+    </li>
+
+    <li>
+      <p class="western">exp(a) : Exponential function at the point a</p>
+    </li>
+
+    <li>
+      <p class="western">expm1(a) : e<sup>a</sup> -1</p>
+    </li>
+
+    <li>
+      <p class="western">floor(a) : Greatest integer smaller than or equal to a</p>
+    </li>
+
+    <li>
+      <p class="western">hypot(x, y) : sqrt(x<sup>2</sup> +y<sup>2</sup>)</p>
+    </li>
+
+    <li>
+      <p class="western">log(a) : Natural logarithm (base e) of a</p>
+    </li>
+
+    <li>
+      <p class="western">log10(a) : Base 10 logarithm of a</p>
+    </li>
+
+    <li>
+      <p class="western">max(a, b) : The greater of the two arguments a and b</p>
+    </li>
+
+    <li>
+      <p class="western">min(a, b) : The smaller of the two arguments a and b</p>
+    </li>
+
+    <li>
+      <p class="western">pow(a, b) : a raised to the power b</p>
+    </li>
+
+    <li>
+      <p class="western">random() : Random value greater than or equal to 0.0 and less
+      than 1.0</p>
+    </li>
+
+    <li>
+      <p class="western">rint(a) : The integer closest to a</p>
+    </li>
+
+    <li>
+      <p class="western">signum(a) : Zero if the argument is zero, 1 if the argument
+      is greater than zero, -1 if the argument is less than zero.</p>
+    </li>
+
+    <li>
+      <p class="western">sin(a) : Sine of a</p>
+    </li>
+
+    <li>
+      <p class="western">sinh(a) : Hyperbolic sine of a</p>
+    </li>
+
+    <li>
+      <p class="western">sqrt(a) : Square root of a</p>
+    </li>
+
+    <li>
+      <p class="western">tan(a) : Tangent of a</p>
+    </li>
+
+    <li>
+      <p class="western">tanh(a) : Hyperbolic tangent of a</p>
+    </li>
+  </ul>
+
+  <h1 class="western">Calculation</h1>
+
+  <p class="western">In order to run FullSWOF with the project parameters, you must first
+  indicate the path to the binary executable FullSWOF file in the preferences (under
+  <i>'FullSWOF'</i>).</p>
+
+  <p class="western">Then you can launch the computation using <i>File &gt; Run
+  simulation</i> or F5.</p>
+
+  <p class="western">Messages from FullSWOF are written in a console, which also indicate
+  the progression of the simulation and gives you the ability to interrupt FullSWOF. You
+  can also activate the view of the output file while it is being created by
+  FullSWOF. In this case you will be able to visualize the file up to the last time step
+  computed. This functionality may slow down FullSWOF. It can be deactivated in the
+  preferences.</p>
+
+  <h1 class="western">Output files view</h1>
+
+  <p class="western">You can visualize output file previously computed by FullSWOF using
+  <i>File &gt; Open output files</i></p>
+
+  <p class="western">This functionality allows to visualize only Gnuplot and VTK files
+  created by FullSWOF_1D or FullSWOF_2D. These files are usually named <i>huv_evolution</i>.
+  Files named <i>huv_initial</i> and <i>huv_final</i> can be read, but they do not show the evolution
+  of the simulation.</p>
+
+  <h2 class="western">VTK files</h2>
+
+  <p class="western">VTK files produced by FullSWOF_2D can be read, but they do not
+  include the time value of each time step. The interface uses default values instead,
+  which will usually be different from those included in Gnuplot files. The same
+  simulation will produce slightly different visualizations depending on the file format.
+  Gnuplot format should be used.</p>
+
+  <h2 class="western">Spatial view</h2>
+
+  <p class="western">The tab shows a spatial view of the simulation. You can
+  play the animation showing the evolution using the buttons at the bottom of the panel.
+  This animation is only available if the file contains multiple time steps.</p>
+
+  <h2 class="western">Boundaries evolution</h2>
+
+  <p class="western">If the file contains multiple time steps, the evolution tabs will be
+  activated. They display diagrams showing the evolution of values during time. The
+  values displayable for each boundary are the instant discharge, the cumulated discharge
+  and the water height.</p>
+
+  <h2 class="western">Manipulating 3D figures</h2>
+
+  <p class="western">Output files generated by FullSWOF_2D are shown as 3D figures. You
+  can rotate the figure with the mouse (left button). To drag the figure, keep the wheel
+  down and move the mouse. To zoom in or out, use the wheel.</p>
+
+  <h2 class="western">Exporting diagrams and adding data</h2>
+
+  <p class="western">You can add data to the diagrams or export them as image files.
+  Right-click on the diagram and choose the appropriate item in the pop-up menu. These
+  functionalities are not available on 3D figures.</p>
+
+  <p class="western">Supported image file formats depend on your Java configuration, but
+  PNG (recommended), GIF and JPEG formats should usually be supported. The format of the
+  image file produced depend on the extension that you indicate when you save the
+  file.</p>
+
+  <p class="western">To add custom data to a diagram, you must use a data file in which
+  each line describes a point with the following format : x y. You can choose to display
+  this data as a line or as a group of points. You can later erase this data using the
+  diagram pop-up menu.</p>
+
+  <h1 class="western">FullSWOF_UI preferences</h1>
+
+  <p class="western">You can access the application preferences under <i>Configuration
+  &gt; Preferences</i></p>
+
+  <p class="western">The preferences are stored in your user directory, in a hidden
+  directory named <i>.fullswof_ui</i></p>
+
+  <h2 class="western">General</h2>
+
+  <p class="western">The default language used by FullSWOF_UI is that of the system,
+  provided that the translation is available (currently English and French translations
+  are provided), or English by default. You can choose one of the language available in
+  this menu. This choice will only be visible after you restart the application.</p>
+
+  <p class="western">If you select the <i>'Include parameters description'</i> box, FullSWOF_UI
+  will add a description for each parameter included in the project <i>parameters.txt</i>
+  file. Otherwise the file will only contain tags and their values.</p>
+
+  <h2 class="western">FullSWOF</h2>
+
+  <p class="western">This tab lets you indicate the command to be used in order to run
+  FullSWOF. It also lets you choose the default configuration for new projects.</p>
+
+  <h2 class="western">Visualization</h2>
+
+  <p class="western">This tab allows you to choose view settings. You can choose
+  to visualize files that are being created by FullSWOF. However, this functionality may
+  slow down FullSWOF.</p>
+
+  <p class="western">You can also choose the data to be displayed on spatial
+    view figures, as well as the color used for each data type.</p>
+
+  <p class="western"> Please note, we noticed certain problem with Windows that's why we have to remove this option by default.</p>
+
+</body>
+</html>
+

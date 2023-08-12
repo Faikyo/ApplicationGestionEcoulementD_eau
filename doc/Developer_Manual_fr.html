@@ -1,0 +1,326 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<style type="text/css">
+      <!--
+		@page { margin: 2cm }
+		p { margin-bottom: 0.21cm; line-height: 100%; text-align: justify }
+		p.cjk { font-size: 10pt }
+		h1 { margin-bottom: 0.21cm; text-align: center }
+		h1.western { font-family: "Liberation Sans", sans-serif; font-size: 16pt }
+		h1.cjk { font-family: "DejaVu Sans"; font-size: 16pt }
+		h1.ctl { font-family: "DejaVu Sans"; font-size: 16pt }
+		h2 { margin-top: 0.42cm }
+		h2.western { font-family: "Liberation Sans", sans-serif; font-size: 14pt; font-style: italic }
+		h2.cjk { font-size: 14pt; font-style: italic }
+		h2.ctl { font-size: 14pt; font-style: italic }
+		p.code-western { margin-left: 1cm; margin-right: 1cm; margin-top: 0.2cm; margin-bottom: 0.2cm; border: 1px solid #000000; padding: 0.25cm; font-family: "Liberation Mono", monospace; font-size: 10pt; page-break-before: auto }
+		p.code-cjk { margin-left: 1cm; margin-right: 1cm; margin-top: 0.2cm; margin-bottom: 0.2cm; border: 1px solid #000000; padding: 0.25cm; font-size: 10pt; page-break-before: auto }
+		p.code-ctl { margin-left: 1cm; margin-right: 1cm; margin-top: 0.2cm; margin-bottom: 0.2cm; border: 1px solid #000000; padding: 0.25cm; page-break-before: auto }
+		div.c2 {text-align: center}
+		div.c1 {font-family: Liberation Sans, sans-serif; font-size: 20pt; font-weight: bold; text-align: center}
+		body {text-rendering: geometricPrecision;}
+        -->
+	</style>
+</head>
+
+<body lang="fr-FR" dir="ltr">
+  <div class="c1">
+    Documentation développeur de FullSWOF_UI
+  </div>
+
+  <div class="c2">
+    Version 1.01.01 (2015-03-17)
+  </div>
+
+  <p></p>
+
+  <div class="c2">
+    2015-03-17
+  </div>
+
+<h1 class="western">Création d'un arbre de configuration</h1>
+
+<p class="western">L'architecture de FullSWOF_UI est destinée à
+permettre aisément de modifier le nombre et la nature des paramètres
+d'entrée utilisés par FullSWOF, tout en permettant à l'utilisateur
+de choisir entre différentes configurations. Les configurations
+disponibles actuellement correspondent à FullSWOF_1D et FullSWOF_2D.
+Pour assurer la rétro-compatibilité, il est recommandé de créer
+une configuration pour chaque version majeure de FullSWOF plutôt que
+de modifier les configurations 1D et 2D fournies.</p>
+
+<h2 class="western">Créer une configuration</h2>
+
+<p class="western">Toutes les classes nécessaires pour la création
+d'une configuration sont situés dans le package <i>model</i>. Pour
+la plus d'informations, consultez la documentation de ces classes.</p>
+<p class="western">Une configuration est un arbre, constitué
+d'objets de type <i>Node</i>. Bien que la création d'un noeud soit
+simple, décrire une configuration complète couvre souvent de
+nombreuses lignes de code. Pour la clarté du code, il est recommandé
+de faire créer cette configuration par une méthode statique située
+dans une classe dédiée uniquement à la création de cet objet.
+Cette méthode renverra la racine de l'arbre, à laquelle on aura
+attaché les autres noeuds. Placez cette classe dans le package
+<i>model.definition</i> où se trouvent déjà les classes dédiées
+à la construction des configurations 1D et 2D.</p>
+
+<p class="western">Chaque élément visible du panneau de paramétrage
+correspond à un noeud. Ceci inclut aussi bien les paramètres
+proprement dits (<i>ExternalNode</i>) que les groupes de paramètres
+(<i>InternalNode</i>) comme par exemple les différents onglets du
+panneau de paramétrage ou des groupement de paramètres sur une
+seule page (par exemple le groupe «&nbsp;limite gauche&nbsp;» situé
+dans l'onglet «&nbsp;Limites&nbsp;»).</p>
+
+<h2 class="western">Création de la racine et des noeuds internes</h2>
+
+<p class="western">Commencez par créer la racine de l'arbre, de type
+<i>RootNode</i>. C'est sur cet objet que l'on devra pointer pour
+faire référence à l'ensemble de l'arbre.</p>
+
+<p class="code-western">Node root = new RootNode(String nom, String
+description);</p>
+
+<p class="western">Attention le nom de ce noeud est celui de la
+configuration, il est parfois utilisé par le code, par exemple pour
+ouvrir un fichier anciennement créé. Veuillez à ne pas le changer
+et à ne pas utiliser un nom déjà employé par une autre
+configuration.</p>
+
+<p class="western">Puis créez les noeuds internes et ajoutez les au
+noeud parent :</p>
+
+<p class="code-western">Node node1 = new InternalNode(String nom);</p>
+
+<p class="code-western">root.addNode(node1);</p>
+
+<p class="western">Le premier niveau de noeuds internes constituera
+les onglets dans le panneau de paramétrage, tandis que les niveaux
+inférieurs seront affichés comme des cadres sur la page. Il n'y a
+pas de limite au nombre de niveaux imbriqués.</p>
+
+<h2 class="western">Création des paramètres</h2>
+
+<p class="western">Une fois les groupes de paramètres créés, il
+faut leur ajouter les paramètres proprement dit. Tous les paramètres
+dérivent de la classe abstraite <i>ExternalNode</i>. Pour une
+description détaillée de chaque type de paramètre, consulter la
+documentation Doxygen de la classe <i>ExternalNode</i> et des classes
+qui en dérivent. Voici toutefois un résumé des classes les plus
+utiles :</p>
+
+<ul>
+	<li/>
+<p class="western"><i>FieldParameter</i> : champ texte
+	acceptant n'importe quelle valeur</p>
+	<li/>
+<p class="western"><i>FileParameter</i> : permet de spécifier
+	le chemin vers un fichier</p>
+	<li/>
+<p class="western"><i>IntegerParameter</i> : Nombre entier
+	(avec possibilité de définir l'intervalle des valeurs acceptées)</p>
+	<li/>
+<p class="western">FloatParameter : Nombre décimal (avec
+	possibilité de définir l'intervalle des valeurs acceptées)</p>
+	<li/>
+<p class="western">MultipleChoiceParameter : Paramètre avec
+	un ensemble fini de valeur possibles (affichés sous forme de menu
+	déroulant). Pour ajouter des valeurs, utilisez la commande
+	addPossibleValue(String nom, String valeur)</p>
+</ul>
+
+<p class="western">Les autres classes étendant ExternalNode sont des
+paramètres au comportement particulier (tels que l'extension du
+dossier de sortie) ou des noeuds externes qui ne sont pas des
+paramètres (comme les noeuds utilisés pour créer des fichiers
+d'entrée).</p>
+
+<h2 class="western">Dépendances</h2>
+
+<p class="western">Pour que la valeur d'un noeud enclenche une
+réaction sur d'autres noeuds, il est nécessaire de créer une
+dépendance (classe abstraite <i>Dependency</i>). Une dépendance a
+toujours un noeud «&nbsp;maître&nbsp;», un noeud «&nbsp;esclave&nbsp;»
+et une valeur cible. Lorsque la valeur du noeud maître est égale à
+la valeur cible, un changement est effectué sur le noeud esclave.
+Cet outil est particulièrement utile avec les paramètres à choix
+multiple. Un choix particulier peut ainsi désactiver d'autres
+paramètres ou changer leur valeur. Toutefois les dépendances
+peuvent être utilisées avec tout type de paramètre.</p>
+
+<p class="western">L'exemple suivant permet par exemple de désactiver
+le paramètre node2 lorsque le paramètre node1 a la valeur «&nbsp;4&nbsp;».
+La simple création de l'objet suffit à rendre la dépendance
+active.</p>
+
+<p class="code-western">new DisablingDependency(node1, node2, &quot;4&quot;);</p>
+
+<p class="western">Le code actuel définit trois sortes de dépendances
+:</p>
+
+<ul>
+	<li/>
+<p class="western"><i>DisablingDependency :</i> permet de
+	désactiver le noeud esclave pour une certaine valeur du noeud
+	maître. Attention le noeud esclave n'est pas réactivé
+	automatiquement si le noeud maître change de valeur par la suite.
+	Pour simuler ceci vous devez utilisez <i>EnablingDependency</i> sur
+	les autres valeurs possibles du noeud maître.</p>
+	<li/>
+<p class="western"><i>EnablingDependency :</i> offre la
+	fonctionnalité inverse.</p>
+	<li/>
+<p class="western"><i>SettingDependency :</i> modifie la
+	valeur du paramètre cible lorsque le paramètre principal a une
+	certaine valeur.</p>
+</ul>
+
+<h2 class="western">Activer la configuration</h2>
+
+<p class="western">Une fois la configuration créée, il faut
+l'ajouter à la liste des configurations utilisées. Celle-ci se
+trouve dans la classe <i>launch.Procedures</i>, sous la forme d'une
+variable (tableau) nommée <i>AVAILABLE_CONFIGURATIONS</i>. Ajoutez
+votre configuration à ce tableau sous la forme d'un appel à la
+fonction de création de la configuration. C'est la racine de l'arbre
+de configuration qui doit être retournée par cette fonction.</p>
+
+<p class="western">Il est nécessaire de compiler (commande javac) la
+classe que vous avez créé ainsi que la classe <i>launch.Procedures</i>
+et de placer les fichiers .class produits dans l'archive jar. À
+chaque package correspond un répertoire où placer le fichier
+.class. Comme le reste du projet les nouvelles classes devront être
+compilées en utilisant Java&nbsp;6 (ou supérieur).</p>
+
+<p class="western">Si vous souhaitez plutôt recompiler l'ensemble du
+projet, il est nécessaire d'utiliser l'outil d'export d'Eclipse
+(Export &gt; Runnable jar file). C'est en effet un des seuls outils
+qui permet de créer un jar contenant d'autres jar, ce que n'autorise
+pas la commande habituelle java -jar.</p>
+
+<h2 class="western">Localisation des paramètres</h2>
+
+<p class="western">Afin de conserver l'aspect internationalisé de
+FullSWOF_UI, mieux vaut ne pas écrire les noms et descriptions des
+paramètres directement dans la classe. Il est recommandé de créer
+un fichier de localisation pour votre configuration et de le placer
+dans un répertoire qui lui est propre (cf. ci-dessous).</p>
+
+<p class="western">Pour accéder à cette localisation, créez un
+<i>ResourceBundle</i> de la manière suivante (cet exemple suppose
+que le fichier de localisation par défaut se situe dans le dossier
+<i>/l10n/maconfig/</i> et se nomme <i>Config.properties</i>):</p>
+
+<p class="code-western">ResourceBundle messages =
+    ResourceBundle.getBundle(&quot;l10n.maconfig.Config&quot;,
+    launch.Start.currentLocale);</p>
+
+<p class="western">Cette commande se chargera de récupérer les
+messages dans la langue approprié si celle-ci est disponible. Ne
+précisez donc jamais de code pays dans la méthode de récupération
+du <i>ResourceBundle</i>.</p>
+
+<p class="western">Ensuite, plutôt que d'écrire directement le nom
+du paramètre dans la classe, écrivez :</p>
+
+<p class="code-western">messages.getString(&quot;cle&quot;);</p>
+
+<p class="western">votre fichier de localisation doit alors contenir
+la ligne :</p>
+
+<p class="code-western">cle = Nom du paramètre</p>
+
+<p class="western">La seule exception à cette règle est le nom de
+racine de la configuration (<i>RootNode</i>) qui doit être écrit
+directement dans la classe et différer des autres noms de
+configuration.</p>
+
+<p class="western">Pour plus de précisions, consultez la
+documentation Oracle de la classe <i>ResourceBundle</i>.</p>
+
+<h1 class="western">Localisation</h1>
+
+<p class="western">FullSWOF_UI est entièrement internationalisé,
+c'est à dire que les messages utilisateurs ne sont pas écrits
+directement dans le code. L'application charge à l'exécution les
+messages depuis un fichier, ce qui permet de pouvoir choisir aisément
+la langue. La localisation est le fait de fournir un fichier
+contenant des traductions des messages dans une langue spécifique.
+L'interface est actuellement localisée en français et en anglais.
+L'ajout d'une nouvelle localisation peut se faire sans recompilation
+de l'archive jar. Il suffit d'ajouter les fichiers de localisation
+pour voir apparaître un nouveau choix de langue dans les préférences
+de l'interface.</p>
+
+<p class="western">Les fichiers de localisation sont de simples
+fichiers texte avec une liste de paires clé/valeur. Pour créer un
+fichier de localisation, copiez le contenu du fichier par défaut
+(cf. nommage des fichiers) et remplacez les valeurs par la traduction
+appropriée. La clé doit rester identique. Si une clé est absente
+de votre fichier, l'interface utilisera la valeur qui y est associé
+dans le fichier par défaut.</p>
+
+<p class="western">Certains mots (par exemple les réponses «&nbsp;Oui&nbsp;»
+et «&nbsp;Non&nbsp;», «&nbsp;Annuler&nbsp;» des boîtes de
+dialogues) ne sont pas définis par des fichiers de localisation mais
+par la machine virtuelle Java. Il est possible que la machine
+virtuelle installée par l'utilisateur ne comporte pas la traduction
+de ces mots dans la localisation choisi. Dans ce cas on verra
+apparaître ces mots dans une autre langue que celle choisie par
+l'interface (la langue par défaut de la JVM).</p>
+
+<h2 class="western">Nommage des fichiers</h2>
+
+<p class="western">Les fichiers de localisation sont répartis dans
+plusieurs dossiers situés dans le répertoire <i>/l10n</i> de
+l'archive jar. Dans chaque dossier se trouvent plusieurs fichiers
+dont le nom suit toujours le motif <i>nom_codePays.extension</i> (par
+exemple <i>UIMessages_fr.properties</i>). Pour qu'un fichier de
+localisation soit pris en compte, il doit suivre ce motif. Le code
+pays en question est un code à deux lettres défini par la norme ISO
+639.</p>
+
+<p class="western">Par ailleurs chaque dossier contient un fichier
+sans code pays. Il s'agit de la localisation par défaut. Si une clé
+de traduction n'est pas disponible dans un fichier de localisation
+créé, c'est la clé contenue dans le fichier par défaut qui sera
+utilisé à la place.</p>
+<h2 class="western">Les différents fichiers de localisation</h2>
+<p class="western" align="left" style="margin-bottom: 0cm; line-height: 100%">
+Les fichiers de localisation sont répartis dans plusieurs dossiers,
+chaque dossier correspondant à un type de fichier et contenant les
+différentes localisations disponible pour ce type de fichier.</p>
+
+<ul>
+	<li/>
+<p class="western" align="left" style="margin-bottom: 0cm; line-height: 100%">
+	<i>/l10n/controller</i> contient les fichiers <i>UIMessages</i>. Il s'agit
+	des messages principaux de l'interface. Si vous souhaitez ajouter
+	une localisation, vous devez absolument créer un fichier <i>UIMessages</i>
+	avec le code pays approprié. C'est la présence de ce fichier qui
+	permettra l'apparition du choix de la langue dans les préférences.
+	Notez que ce fichier, comme les autres, peut être vide ou
+	incomplet, l'interface utilisera alors les traductions du fichier
+	par défaut.</p>
+	<li/>
+<p class="western" align="left" style="margin-bottom: 0cm; line-height: 100%">
+	<i>/l10n/config</i> contient les fichiers de localisation propre à
+	chaque configuration de paramètres (un dossier par configuration&nbsp;:
+	FullSWOF_1D, FullSWOF_2D...). Il est recommandé de créer un
+	nouveau dossier pour chaque configuration définie plutôt que de
+	réemployer le fichier d'une autre configuration, même si de
+	nombreuses clés sont communes.</p>
+	<li/>
+<p class="western" align="left" style="margin-bottom: 0cm; line-height: 100%">
+	<i>/l10n/manual</i> contient le manuel utilisateur affiché par
+	l'interface. Contrairement aux autres fichiers, il s'agit d'un
+	fichier HTML dont le contenu est affiché dans une fenêtre de
+	l'application.</p>
+</ul>
+
+</body>
+</html>

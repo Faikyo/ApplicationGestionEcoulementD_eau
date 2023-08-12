@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="anchorPane" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #F0F8FF;" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.univ.fullswofng.views.RelaxationParameters">
+    <children>
+        <AnchorPane prefHeight="47.0" prefWidth="800.0" style="-fx-background-color: #2a1c42;" AnchorPane.bottomAnchor="553.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <ImageView fitHeight="22.0" fitWidth="22.0" layoutX="764.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+                <ImageView fx:id="menu" fitHeight="28.0" fitWidth="32.0" layoutX="7.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/menu.png" />
+                    </image>
+                </ImageView>
+                <BorderPane layoutX="62.0" prefHeight="47.0" prefWidth="72.0">
+                    <left>
+                        <JFXButton fx:id="fichier" onAction="#showPopupFile" text="Fichier" textFill="WHITE" BorderPane.alignment="CENTER" />
+                    </left>
+                </BorderPane>
+                <BorderPane layoutX="147.0" layoutY="3.0" prefHeight="47.0" prefWidth="102.0">
+                    <center>
+                        <JFXButton fx:id="preferences" mnemonicParsing="false" onAction="#showPopupPreferences" prefHeight="23.0" prefWidth="78.0" text="Préférences" textFill="WHITE" BorderPane.alignment="CENTER">
+                            <BorderPane.margin>
+                                <Insets />
+                            </BorderPane.margin>
+                            <padding>
+                                <Insets top="-5.0" />
+                            </padding>
+                        </JFXButton>
+                    </center>
+                </BorderPane>
+                <BorderPane layoutX="265.0" layoutY="10.0" prefHeight="28.0" prefWidth="80.0">
+                    <center>
+                        <JFXButton fx:id="aide" mnemonicParsing="false" onAction="#showPopupHelp" text="Aide" textFill="WHITE" BorderPane.alignment="CENTER" />
+                    </center>
+                </BorderPane>
+
+            </children></AnchorPane>
+        <AnchorPane fx:id="pane2" layoutX="10.0" layoutY="50.0" prefHeight="553.0" prefWidth="280.0" style="-fx-background-color: #3f2b63;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="720.0" AnchorPane.topAnchor="50.0">
+            <children>
+                <VBox layoutX="10.0" layoutY="2.0" prefHeight="546.0" prefWidth="260.0" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="2.0">
+                    <children>
+                        <JFXButton fx:id="parametres" alignment="CENTER" mnemonicParsing="false" onAction="#goToGeneralParameters" prefHeight="60.0" prefWidth="260.0" text="Paramètres généraux" textFill="WHITE">
+                            <font>
+                                <Font size="12.0" />
+                            </font>
+                        </JFXButton>
+                        <JFXButton fx:id="concentrations" alignment="CENTER" mnemonicParsing="false" onAction="#goToEntryConcentration" prefHeight="60.0" prefWidth="280.0" text="Concentrations en entrée" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+                            <font>
+                                <Font size="12.0" />
+                            </font>
+                        </JFXButton>
+                        <JFXButton fx:id="condition" alignment="CENTER" buttonType="RAISED" mnemonicParsing="false" onAction="#goToInitialConditions" prefHeight="60.0" prefWidth="280.0" text="Conditions initiales" textFill="WHITE">
+                            <font>
+                                <Font size="12.0" />
+                            </font>
+                        </JFXButton>
+                        <JFXButton fx:id="coeficient" alignment="CENTER" mnemonicParsing="false" onAction="#goToMiConcentrationsCoeficient" prefHeight="60.0" prefWidth="280.0" text="Coeficient de la concentration Mi" textFill="WHITE">
+                            <font>
+                                <Font size="12.0" />
+                            </font>
+                        </JFXButton>
+                        <JFXButton fx:id="relaxation" alignment="CENTER" mnemonicParsing="false" onAction="#goToRelaxationParameters" prefHeight="60.0" prefWidth="280.0" text="Paramètres de relaxation" textFill="WHITE" wrapText="true">
+                            <font>
+                                <Font size="12.0" />
+                            </font>
+                        </JFXButton>
+                        <JFXButton fx:id="equilibre" alignment="CENTER" mnemonicParsing="false" onAction="#goToBalancingFunction" prefHeight="60.0" prefWidth="280.0" text="Fonction d'équilibre" textFill="WHITE">
+                            <font>
+                                <Font size="12.0" />
+                            </font>
+                        </JFXButton>
+                        <JFXButton fx:id="apportSpatial" alignment="CENTER" mnemonicParsing="false" onAction="#goToSpatialInputFOrFlowConcentration" prefHeight="60.0" prefWidth="280.0" text="Apport spatial pour la concentration dans l'écoulement" textAlignment="CENTER" textFill="WHITE">
+                            <font>
+                                <Font size="12.0" />
+                            </font>
+                        </JFXButton>
+                        <JFXButton fx:id="apportPluie" alignment="CENTER" mnemonicParsing="false" onAction="#goToRainFallInputForFlowConcentration" prefHeight="60.0" prefWidth="280.0" text="Apport lié à la pluie pour la concentration dans l'écoulement" textAlignment="CENTER" textFill="WHITE">
+                            <font>
+                                <Font size="12.0" />
+                            </font>
+                        </JFXButton>
+                        <JFXButton fx:id="apportEcoulement" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#goToFlowInputForFlowConcentration" prefHeight="60.0" prefWidth="280.0" text="Apport lié à l'écoulement pour la concentration dans l'écoulement" textAlignment="CENTER" textFill="WHITE">
+                            <font>
+                                <Font size="12.0" />
+                            </font>
+                        </JFXButton>
+                        <JFXButton fx:id="apportChimique" mnemonicParsing="false" onAction="#goToChemicalInputForExchangeLayer" prefHeight="60.0" prefWidth="280.0" text="Apport chimique pour la couche d'échange" textAlignment="CENTER" textFill="WHITE">
+                            <font>
+                                <Font size="12.0" />
+                            </font>
+                        </JFXButton>
+                        <JFXButton fx:id="dossierSortie" alignment="CENTER" mnemonicParsing="false" onAction="#goToOutputFileName" prefHeight="60.0" prefWidth="280.0" text="Nom du dossier de sortie" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                            <font>
+                                <Font size="12.0" />
+                            </font>
+                        </JFXButton>
+                    </children>
+                </VBox>
+            </children>
+        </AnchorPane>
+        <Pane fx:id="pane3" layoutX="266.0" layoutY="52.0" prefHeight="553.0" prefWidth="734.0" style="-fx-background-color: #F0F8FF;">
+            <children>
+                <Text fontSmoothingType="LCD" layoutX="259.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Paramètres de relaxation" underline="true">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Text>
+                <Text fontSmoothingType="LCD" layoutX="14.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Paramètres de relaxation Rpi :">
+                    <font>
+                        <Font size="12.0" />
+                    </font>
+                </Text>
+            <RadioButton fx:id="identicalCoeficientRelaxation" layoutX="14.0" layoutY="107.0" mnemonicParsing="false" onAction="#desactivation_composant" text="Coeficient identique">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="relaxationFile" layoutX="14.0" layoutY="135.0" mnemonicParsing="false" onAction="#activation_Choix_Fichier" text="Fichier">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </RadioButton>
+            <Text fontSmoothingType="LCD" layoutX="16.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coefficient Rpi :">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Text>
+            <TextField fx:id="coefficient_RPI" disable="true" layoutX="14.0" layoutY="223.0" onKeyTyped="#handleKeyPress" />
+            <Text fontSmoothingType="LCD" layoutX="14.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Temps de relaxation tsi :">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Text>
+            <RadioButton fx:id="tsiEqualsRpi" layoutX="14.0" layoutY="277.0" mnemonicParsing="false" onAction="#activation_Temps_Chimique" text="Tsi = Rpi">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="tsiEqualsHByRpi" layoutX="14.0" layoutY="304.0" mnemonicParsing="false" onAction="#activation_Temps_Chimique" text="Tsi = h * Rpi">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="tsiEqualsChemicalTime" layoutX="14.0" layoutY="332.0" mnemonicParsing="false" onAction="#activation_Temps_Chimique" text="Tsi = Temps chimique">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </RadioButton>
+            <Button fx:id="choix_Fichier" disable="true" layoutX="14.0" layoutY="172.0" mnemonicParsing="false" text="Fichier" />
+            <TextField fx:id="chemin_Fichier" disable="true" layoutX="78.0" layoutY="172.0" />
+            <TextField fx:id="intensite_Pluie" disable="true" layoutX="14.0" layoutY="378.0" onKeyTyped="#handleKeyPress" />
+            <Text fontSmoothingType="LCD" layoutX="16.0" layoutY="369.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seuil d'intensité de la pluie pour le transfert chimique (m/n)">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Text>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>

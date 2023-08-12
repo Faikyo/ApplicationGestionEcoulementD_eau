@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <style type="text/css">
+        <!--
+        @page { margin: 2cm }
+        p { margin-bottom: 0.21cm; line-height: 100%; text-align: justify }
+        p.cjk { font-size: 10pt }
+        h1 { margin-bottom: 0.21cm; text-align: center }
+        h1.western { font-family: "Liberation Sans", sans-serif; font-size: 16pt }
+        h1.cjk { font-family: "DejaVu Sans"; font-size: 16pt }
+        h1.ctl { font-family: "DejaVu Sans"; font-size: 16pt }
+        h2 { margin-top: 0.42cm }
+        h2.western { font-family: "Liberation Sans", sans-serif; font-size: 14pt; font-style: italic }
+        h2.cjk { font-size: 14pt; font-style: italic }
+        h2.ctl { font-size: 14pt; font-style: italic }
+        p.code-western { margin-left: 1cm; margin-right: 1cm; margin-top: 0.2cm; margin-bottom: 0.2cm; border: 1px solid #000000; padding: 0.25cm; font-family: "Liberation Mono", monospace; font-size: 10pt; page-break-before: auto }
+        p.code-cjk { margin-left: 1cm; margin-right: 1cm; margin-top: 0.2cm; margin-bottom: 0.2cm; border: 1px solid #000000; padding: 0.25cm; font-size: 10pt; page-break-before: auto }
+        p.code-ctl { margin-left: 1cm; margin-right: 1cm; margin-top: 0.2cm; margin-bottom: 0.2cm; border: 1px solid #000000; padding: 0.25cm; page-break-before: auto }
+        div.c2 {text-align: center}
+        div.c1 {font-family: Liberation Sans, sans-serif; font-size: 20pt; font-weight: bold; text-align: center}
+        body {text-rendering: geometricPrecision;}
+        -->
+    </style>
+</head>
+
+<body lang="fr-FR" dir="ltr">
+<div class="c1">
+    Developer documentation of FullSWOF-transfer_UI
+</div>
+
+<div class="c2">
+    Version 1.00.00 (2023-03-14)
+</div>
+
+<p></p>
+
+<div class="c2">
+    2022-06-23
+</div>
+
+<br>
+<h1 class="western">Architecture</h1>
+
+<p class="western">The architecture of FullSWOF-transfer_UI is done in a way
+    to add menus or even parameters easily, without having to modify the whole
+    code.</p>
+
+<p class="western"> The code was structured in MVC (Model - View - Controller).</p>
+
+<p class="western">For each tab, there is a class in which all the different parameters (fields) are located.</p>
+
+<h2 class="western">Package <i>Field</i></h2>
+
+<p class="western">This package includes all the different types of fields we use.
+    If we want to create a new parameter that expects, for example, an integer, we
+    open the class corresponding to the tab in which the parameter is located, then we declare
+    in attribute:</p>
+
+<p class="code-western">IntegerField input1 = new IntegerField("tag");</p>
+
+<p class="western">It is possible to specify the lower and upper bounds and to precise if the bounds are attained. 
+
+<h2 class="western">Tags</h2>
+
+<p class="western">A tag system has been put in place. When creating a parameter, as seen above, a tag is expected.
+    The tag corresponds to a word that is placed in the file <i>TransferParameters_file.properties</i>. This tag is linked to a
+    line that will be found in the file <i>transfer.txt</i>. There is a dependency system that will correctly add the correct
+    value to the corresponding tag.</p>
+
+<br>
+<h1 class="western">Create a setup</h1>
+
+<p class="western">If you want to create a new settings tab, go to the
+    package <i>View</i>, then create a class with the name of your new tab for readability.
+    In this class, create a function <i>build()</i> which will be the function that will create your parameter panel.
+    Also create the function:</p>
+
+<p class="code-western">public GeneralParameters(ResourceBundle rb) {
+    this.rb = rb;
+    }</p>
+
+<p class="western">Then go to the class <i>StaticView</i>, and add your new tab type as an attribute</p>
+
+<p class="code-western">NewTab newTab;</p>
+
+<p class="western">Also in the class <i>StaticView</i>, add the lines:</p>
+
+<p class="code-western">newTab = new NewTab(rb);</p>
+<p class="code-western">JPanel newTabPanel = newTab.build(mainFrame);</p>
+<p class="code-western">PanelMenuButton NTButton = new PanelMenuButton("Title", panelMenu); <br>
+    NOButton.addAction(mainFrame, panelFormulaire, newTabPanel);</p>
+
+<p class="western">Finally, to add parameters to the tab you just created,
+    use the different existing fields as already explained at the beginning of the manual. Don't forget to add the tag
+    that you use in the declaration of your Field, in the file <i>TransferParameters_file.properties</i> </p>
+
+<br>
+<h1 class="western">Location</h1>
+
+<p class="western">FullSWOF-transfer_UI is fully internationalized,
+    i.e. user messages are not written
+    directly in the code. The application loads at runtime the
+    messages from a file, which makes it easy to choose
+    language. Localization is the act of providing a file
+    containing translations of messages in a specific language.
+    The interface is currently localized in French and English.
+</p>
+
+<p class="western">Localization files are simple
+    text files with a list of key/value pairs. To create a
+    localization file, copy the contents of the default file
+    (see file naming) and replace the values with the translation
+    appropriate. The key must remain unchanged. If a key is missing
+    in your file, the interface will use the value associated with it
+    in the default file.</p>
+
+<h2 class="western">File naming</h2>
+
+<p class="western">The localization files are distributed in
+    several folders located in the directory <i>/language</i>.
+    In this folder are several files
+    whose name always follows the pattern <i>code_nameCountry.extension</i> (for
+    example <i>TransferParameters_fr.properties</i>). To take into account a file of
+    location, it must follow this pattern. The code
+    country in question is a two-letter code defined by the ISO&nbsp;639 standard.</p>
+
+<h2 class="western">Add a language</h2>
+
+<p class="western">Create as a new file <i>.properties</i> as explained above with the translation
+    corresponding to the language you want to add.</p>
+
+<p class="western">Then get into the class <i>StaticView</i> and look at the function
+    <i>ActionPerformed</i> of <i>e2.addActionListener</i>. Add to list <i>langue</i> the name of your new
+    language.</p>
+
+<p class="western">Finally, inside this function, add a new condition:</p>
+
+<p class="code-western">if (choose.equals("newLanguage")){<br>
+    Locale locale = new Locale("newLocation");<br>
+    controller.addUILanguage(locale);<br>
+    mainFrame.validate();<br>
+    mainFrame.repaint();<br>
+    }</p>
+
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<style type="text/css">
+      <!--
+		@page { margin: 2cm }
+		p { margin-bottom: 0.21cm; line-height: 100%; text-align: justify }
+		p.cjk { font-size: 10pt }
+		h1 { margin-bottom: 0.21cm; text-align: center }
+		h1.western { font-family: "Liberation Sans", sans-serif; font-size: 16pt }
+		h1.cjk { font-family: "DejaVu Sans"; font-size: 16pt }
+		h1.ctl { font-family: "DejaVu Sans"; font-size: 16pt }
+		h2 { margin-top: 0.42cm }
+		h2.western { font-family: "Liberation Sans", sans-serif; font-size: 14pt; font-style: italic }
+		h2.cjk { font-size: 14pt; font-style: italic }
+		h2.ctl { font-size: 14pt; font-style: italic }
+		p.code-western { margin-left: 1cm; margin-right: 1cm; margin-top: 0.2cm; margin-bottom: 0.2cm; border: 1px solid #000000; padding: 0.25cm; font-family: "Liberation Mono", monospace; font-size: 10pt; page-break-before: auto }
+		p.code-cjk { margin-left: 1cm; margin-right: 1cm; margin-top: 0.2cm; margin-bottom: 0.2cm; border: 1px solid #000000; padding: 0.25cm; font-size: 10pt; page-break-before: auto }
+		p.code-ctl { margin-left: 1cm; margin-right: 1cm; margin-top: 0.2cm; margin-bottom: 0.2cm; border: 1px solid #000000; padding: 0.25cm; page-break-before: auto }
+		div.c2 {text-align: center}
+		div.c1 {font-family: Liberation Sans, sans-serif; font-size: 20pt; font-weight: bold; text-align: center}
+		body {text-rendering: geometricPrecision;}
+        -->
+	</style>
+</head>
+
+<body lang="en-US" dir="ltr">
+  <div class="c1">
+    Developer documentation of FullSWOF_UI
+  </div>
+
+  <div class="c2">
+    Version 1.01.01 (2015-03-17)
+  </div>
+
+  <p></p>
+
+  <div class="c2">
+    2012-07-19
+  </div>
+
+<h1 class="western">Creation of a configuration tree</h1>
+
+<p class="western">The architecture of FullSWOF_UI is
+designed to allow an easy modification of the number and type of
+entry parameters used by FullSWOF, and, at the same time, to allow
+the user to choose among various configurations. The configurations
+available today are for FullSWOF_1D and FullSWOF_2D. To ensure a
+backward-compatibility, it is recommended to create a configuration
+for each major version of FullSWOF instead of modifying the 1D and 2D
+existing configurations.</p>
+
+<h2 class="western">Create a configuration</h2>
+
+<p class="western">All the classes required for the
+creation of a configuration are located in the package <i>model</i>.
+For more information, look at the documentation of these classes.</p>
+
+<p class="western">A configuration is a tree, made of
+objects of type <i>Node</i>. While the creation of a node is simple,
+to describe a configuration fully often require numerous lines of
+code. For the clarity of the code, it is recommended to create a
+configuration using a static method located in a class completely
+dedicated to the creation of this object. This method will return the
+tree root, to which had been attached the other nodes. Put this class
+in the package <i>model.definition</i> which already contains the
+classes dedicated to the building of the 1D and 2D configurations.</p>
+
+<p class="western">Every visible item of the
+configuration panel match one node. This is valid for the parameters
+themselves (<i>ExternalNode</i>) but also for the parameter groups
+(<i>InternalNode</i>) such as the various tabs of the parametrization
+panel or the groups of parameters on a single page (for example the
+group «&nbsp;left limit&nbsp;» located in the tab «&nbsp;Limits&nbsp;»).</p>
+
+<h2 class="western">Creation of the root and internal
+nodes</h2>
+
+<p class="western">launch.Start by creating the root tree, with
+the type <i>RootNode</i>. It is to this object that it should be
+pointed to make reference to the whole tree.</p>
+<p class="code-western">Node root = new RootNode(String
+name, String description);</p>
+
+<p class="western">Be careful that the name of this none
+is the one of the configuration, and is sometimes used by the code,
+for example to open a previously-created file. Be careful not to
+change it or to use a name already existing for another
+configuration.</p>
+
+<p class="western">Then create the internal nodes and
+add them to the parent node:</p>
+<p class="code-western">Node node1 = new
+InternalNode(String name);</p>
+
+<p class="code-western">root.addNode(node1);</p>
+
+<p class="western">The first level of internal nodes
+will be the tabs in the parameterization panel, and the lower levels
+will be displayed as frames in the page. There is no limit to the
+number of imbricated levels.</p>
+
+<h2 class="western">Creation of the parameters</h2>
+
+<p class="western">Once the parameter groups have been
+created, the parameters have to be added. All the parameters come
+from the abstract class <i>ExternalNode</i>. For a detailed
+description of each type of parameter, look at the Doxygen
+documentation of the class <i>ExternalNode</i> and of the classes
+that origin from it. Here is an abstract of the most useful classes:</p>
+
+<ul>
+	<li/>
+<p class="western"><i>FieldParameter</i>: text
+	field accepting any value</p>
+	<li/>
+<p class="western"><i>FileParameter</i>: allow to
+	specify the path to a file</p>
+	<li/>
+<p class="western"><i>IntegerParameter</i>:
+	Integer number (with the possibility to define a range of accepted
+	values)</p>
+	<li/>
+<p class="western"><i>FloatParameter</i>: Float
+	number (with the possibility to define a range of accepted values)</p>
+	<li/>
+<p class="western"><i>MultipleChoiceParameter</i>:
+	Parameter for a finite set of possible values (displayed as a
+	drop-down menu). To add values, use the command
+	addPossibleValue(String name, String value)</p>
+</ul>
+
+<p class="western">The other classes extending
+<i>ExternalNode</i> are parameters with specific behaviors (such as
+the suffix of the output directory) or external nodes which are not
+parameters (such as the nodes used to create entry files).</p>
+
+<h2 class="western">Dependencies</h2>
+
+<p class="western">For the value of a node to activate a
+reaction on other nodes, it is required to create a dependency
+(abstract class <i>Dependency</i>). A dependency alwas has a “master”
+node, a “slave” node and a target value. If the value of the
+master node is equal to the target value, a change is carried out on
+the slave node. This tool is quite useful with the parameters having
+multiple choices. Hence, a specific choice can deactivate other
+parameters or change their value. However, the dependencies can be
+used for every type of parameter.</p>
+
+<p class="western">The following example, allow to
+deactivate the parameter node2 if the parameter node1 has the value
+«&nbsp;4&nbsp;». Creating the object is enough to make active the
+dependency.</p>
+
+<p class="code-western">new DisablingDependency(node1,
+node2, &quot;4&quot;);</p>
+
+<p class="western">The current code define three types
+of dependencies:</p>
+
+<ul>
+	<li/>
+<p class="western"><i>DisablingDependency :</i>
+	allow to deactivate the slave node for a specific value of the
+	master node. Be careful that the slave node is not re-activated
+	automatically if the value of the master node is modified afterward.
+	To have such behavior, you have to use  <i>EnablingDependency</i> of
+	the other possible values of the master node.</p>
+	<li/>
+<p class="western"><i>EnablingDependency :</i>
+	allow the opposite behavior.</p>
+	<li/>
+<p class="western"><i>SettingDependency :</i>
+	modify the value of the target parameter when the main parameter has
+	a specific value.</p>
+</ul>
+
+<h2 class="western">Activate the configuration</h2>
+
+<p class="western">Once the configuration has been
+created, it must be added to the list of used configurations. They
+are inside the class <i>launch.Procedures</i>, as a variable (table)
+named <i>AVAILABLE_CONFIGURATIONS</i>. Add your configuration to this
+table as a call to the creation function of the configuration. This
+is the root of the tree configuration that should be returned by this
+function.</p>
+
+<p class="western">The created class and the
+<i>launch.Procedures class must me compiled </i>(command javac), and the
+created files .class added to the jar archive. To each package
+matches a directory where the file .class should be put. As for the
+whole project, all the new classes should be compiled using Java&nbsp;6 (or above).</p>
+
+<p class="western">If you prefer to recompile the whole
+project, you must use the export tool of Eclipse (File &gt; Export &gt;
+Runnable jar file). This is one of the only tools that allow for the
+creation of a jar containing other jar, which is not allowed by the
+usual command java -jar.</p>
+
+<h2 class="western">Localization of parameters</h2>
+
+<p class="western">To keep the multi-language feature of
+FullSWOF_UI, it is better not to write directly the names and
+descriptions of the parameters directly into the class. It is
+recommended to create a localization file for your configuration and
+to put it in its own directory (see below).</p>
+
+<p class="western">To access to this localization,
+create a  <i>ResourceBundle</i> with (this example suppose that the
+default localization file is in the folder <i>/l10n/myconfig/</i> and
+is named <i>Config.properties</i>):</p>
+
+<p class="code-western">ResourceBundle messages =
+	ResourceBundle.getBundle(&quot;l10n.myconfig.Config&quot;,
+	launch.Start.currentLocale);</p>
+
+<p class="western">This command will convert the
+messages in the designated language if it is available. Never specify
+the country code in the recovery method of <i>ResourceBundle</i>.</p>
+
+<p class="western">Then, instead of writing directly the
+name of the parameter in the class, write:</p>
+
+<p class="code-western">messages.getString(&quot;key&quot;);</p>
+
+<p class="western">And your localization file should
+include the line:</p>
+
+<p class="code-western">key = Name of parameter</p>
+
+<p class="western">The only exception to this rule is
+the name of the root configuration (<i>RootNode</i>) which should be
+written directly into the class and be different from the other
+configuration names.</p>
+
+<p class="western">For more details, look at the Oracle
+documentation for the class <i>ResourceBundle</i>.</p>
+
+<h1 class="western">Localization</h1>
+
+<p class="western">FullSWOF_UI is fully
+internationalized, i.e. the user messages are not written directly
+into the code. The software load on launch the messages from a file,
+which allow to choose easily the language. The localization is
+defined as giving a file containing the translations for the messages
+in a specific language. The interface is currently localized in
+French and English. Adding of a new localization can be done without
+recompiling the jar archive. Adding the localization files is enough
+to get the new language displayed as a new choice in the preference
+interface.</p>
+
+<p class="western">The localization files are only text
+files with a list of pair key/value. To create a localization file,
+copy the content of the default file (see file naming) and replace
+the values with the suitable  translation. The key should remain
+identical. If a key is missing from your file, the interface with use
+the corresponding value of the default file.</p>
+
+<p class="western">Some words (for example the answers
+“Yes”, “No” and “Cancel” of the dialog boxes) are not
+defined by the localization files but by the Java virtual machine.
+The virtual machine installed on the user's computer may not have the
+translation for these words in the selected localization. In this
+case, these words will be displayed in language different from the
+one chosen for the interface (the default language of the JVM).</p>
+
+<h2 class="western">File naming</h2>
+
+<p class="western">The localization files are
+distributed withing several folders located in the directory <i>/l10n</i>
+of the jar archive. In each folder, there are several files with a
+name always using the pattern name_CountryCode.extension (e.g.
+<i>UIMessages_fr.properties</i>). For a localization file to be taken
+into account, it must follow this pattern. The contry code is a
+two-letter code defined by the ISO&nbsp;639 standard. 
+</p>
+
+<p class="western">Moreover, each folder has a file
+without country code. It is the default localization. If a
+translation key is not available in one of the created localization
+file, the key located inside the default file will be used instead.</p>
+<h2 class="western">The different localization files</h2>
+<p class="western" align="left" style="margin-bottom: 0cm; line-height: 100%">
+The localization files are distributed inside several directories.
+Each directory matches one type of file and contains the different
+localizations available for this file type.</p>
+<ul>
+	<li/>
+<p class="western" align="left" style="margin-bottom: 0cm; line-height: 100%">
+	<i>/l10n/controller</i> contains the files <i>UIMessages</i>. They are the
+	main messages of the interface. If you want to add a localization,
+	you need to create a file <i>UIMessages</i> with the suitable
+	country code. The existence of this file while allow the display of
+	the language in the preferences. Please, note that this file, as the
+	others, can be empty or incomplete. In such case, the interface will
+	use the translations of the default file.</p>
+	<li/>
+
+<p class="western" align="left" style="margin-bottom: 0cm; line-height: 100%">
+	<i>/l10n/config</i> contains the localization files specific to each
+	configuration of parameters (a directory for each configuration:
+	FullSWOF_1D, FullSWOF_2D...). We recommend to create a new directory
+	for each defined configuration instead of re-use the file for other
+	configuration, even if numerous keys are identical.</p>
+	<li/>
+
+<p class="western" align="left" style="margin-bottom: 0cm; line-height: 100%">
+	<i>/l10n/manual</i> contains the user manual displayed by the
+	interface. Unlike the other files, it is an HTML file wich content
+	is displayed in a window of the software.</p>
+</ul>
+
+</body>
+</html>

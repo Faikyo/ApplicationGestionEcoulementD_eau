@@ -1,0 +1,380 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=us-ascii">
+
+  <title></title>
+  <style type="text/css">
+      <!--
+                @page { margin: 2cm }
+                P { margin-bottom: 0.21cm; text-align: justify }
+                H1 { margin-bottom: 0.21cm; text-align: center }
+                H1.western { font-family: "Liberation Sans", sans-serif; font-size: 16pt }
+                H1.cjk { font-family: "DejaVu Sans"; font-size: 16pt }
+                H1.ctl { font-family: "DejaVu Sans"; font-size: 16pt }
+                H2 { margin-bottom: 0.21cm }
+                H2.western { font-family: "Liberation Sans", sans-serif; font-size: 14pt; font-style: italic }
+                H2.cjk { font-size: 14pt; font-style: italic }
+                H2.ctl { font-size: 14pt; font-style: italic }
+                body {text-rendering: geometricPrecision;}
+        -->
+  </style>
+  <style type="text/css">
+  p.c3 {font-family: Liberation Mono, monospace}
+  div.c2 {text-align: center}
+  div.c1 {font-family: Liberation Sans, sans-serif; font-size: 20pt; font-weight: bold; text-align: center}
+  </style>
+</head>
+
+<body lang="fr-FR" dir="ltr">
+  <div class="c1">
+    Manuel d'utilisation de FullSWOF_UI
+  </div>
+
+  <div class="c2">
+    Version 2.00.00 (2020-06-12)
+  </div>
+
+  <h1 class="western">Installer et ex&eacute;cuter FullSWOF_UI</h1>
+
+  <p class="western">Cette version de FullSWOF_UI est compatible avec
+  FullSWOF_1D Version 1.02.02 et FullSWOF_2D Version 1.09.01.</p>
+
+  <p>Vous devez disposer de Java version 1.8 ou sup&eacute;rieure pour pouvoir
+    ex&eacute;cuter FullSWOF_UI.</p>
+
+  <p class="western">L'&eacute;quipe de d&eacute;veloppement de FullSWOF utilise la version 11 de Java pour v&eacute;rifier le bon fonctionnement de FullSWOF_UI. Ainsi, losrque nous mettons en ligne une nouvelle version de FullSWOF_UI, nous guarantissons son utilisation avec la version 11 de Java.<br/>
+  Pour v&eacute;rifier la version de Java qui est install&eacute;e sur votre machine, tapez la commande suivante dans un terminal:</p>
+
+<p class="c3">java -version</p>
+
+  <p>Il n'est pas n&eacute;cessaire de disposer de
+  FullSWOF_1D ou FullSWOF_2D pour lancer FullSWOF_UI, mais il sera impossible de lancer
+  les calculs sans ces applications.</p>
+
+  <p>Pour lancer FullSWOF_UI en ligne de commande, placez-vous dans le dossier contenant
+  FullSWOF_UI.jar (sans d&eacute;compresser le fichier) et lancez la commande</p>
+
+  <p class="c3">java -jar FullSWOF_UI.jar</p>
+
+  <p>Sur certains syst&egrave;mes, il est possible de lancer l'application par un
+  clic droit sur l'archive jar, en l'ouvrant avec Java.</p>
+
+  <h1 class="western">Param&eacute;trage</h1>
+
+  <h2 class="western">Cr&eacute;er ou ouvrir un projet</h2>
+
+  <p class="c4">FullSWOF_UI vous permet de travailler sur des fichiers de projet portant
+  l'extension .fsp. Chaque projet est associ&eacute; &agrave; une
+  configuration de FullSWOF. Pour changer de configuration, choisissez la configuration
+  appropri&eacute;e dans l'onglet 'FullSWOF' des
+  pr&eacute;f&eacute;rences, puis cr&eacute;ez un nouveau projet.</p>
+
+  <p class="c4">Vous pouvez enregistrer le projet via la commande <i>'Fichier &gt; Enregistrer le
+  projet'</i> (Ctrl + S) ou l'enregistrer sous un nouveau nom via <i>'Fichier &gt; Enregistrer le
+  projet sous ...'</i>. L'enregistrement d'un projet cr&eacute;e un
+  fichier .fsp ainsi qu'un dossier du m&ecirc;me nom contenant les
+  donn&eacute;es du projet. C'est aussi ce dossier qui contiendra les
+  donn&eacute;es de sortie du programme. Attention &agrave; ne pas changer le
+  nom de ce dossier.</p>
+
+  <h2 class="western">Importer un fichier de param&egrave;tres</h2>
+
+  <p class="c4">Pour r&eacute;utiliser des donn&eacute;es n'ayant pas
+  &eacute;t&eacute; cr&eacute;&eacute;es avec FullSWOF_UI, vous
+  devez utiliser la commande <i>'Importer un fichier de param&egrave;tres'</i>.
+  Cette commande tentera de lire les donn&eacute;es issues d'un fichier
+  format&eacute; comme <i>parameters.txt</i>. Faites attention
+  &agrave; bien choisir la configuration FullSWOF (1D ou 2D)
+  appropri&eacute;e au fichier au moment de la cr&eacute;ation du projet.</p>
+
+  <h2 class="western">Renseigner les param&egrave;tres</h2>
+
+  <p class="c4">FullSWOF_UI vous permet d'indiquer ais&eacute;ment les
+  param&egrave;tres de configuration n&eacute;cessaires pour lancer FullSWOF.
+  Il suffit de renseigner les diff&eacute;rents champs. Certains champs utilisent
+  des valeurs enti&egrave;res, et d'autres des d&eacute;cimaux. Si la valeur
+  saisie est incorrecte, le champ sera color&eacute; en rouge. Pour plus
+  d'informations sur les restrictions applicables &agrave; chaque
+  param&egrave;tre, veuillez consulter le manuel de FullSWOF.</p>
+
+  <p class="c4">Note : Pour les valeurs d&eacute;cimales, vous pouvez saisir un
+  nombre &agrave; virgule de la forme 1.234 ou utiliser la notation scientifique
+  1.23e-4.</p>
+
+  <h2 class="western">Fichiers tiers</h2>
+
+  <p>Vous pouvez visualiser les fichiers annexes utilis&eacute;s en
+  entr&eacute;e (fichiers de topographie, huv, pluie) apr&egrave;s les
+  avoir choisis. Le bouton <i>'visualiser'</i> ouvre une fen&ecirc;tre vous permettant
+  d'obtenir rapidement un diagramme ou une figure 3D repr&eacute;sentant les
+  donn&eacute;es du fichier. Les figures 3D peuvent &ecirc;tre
+  manipul&eacute;es de la m&ecirc;me mani&egrave;re que pour la
+  visualisation des fichiers de r&eacute;sultats.</p>
+
+  <p class="c4">Lorsque vous indiquez le chemin d'un fichier tiers comme
+  param&egrave;tre (un fichier de topographie, huv, ou pluie), FullSWOF_UI
+  tentera de le copier dans le dossier Inputs du projet. Toutefois cette copie peut
+  &eacute;chouer sur de tr&egrave;s gros fichiers (plus de 2Go). Si tel est le
+  cas, veuillez copier manuellement ce fichier dans le dossier Inputs et indiquer le
+  chemin de cette copie comme param&egrave;tre du projet.</p>
+
+  <h2 class="western">G&eacute;n&eacute;ration de fichiers
+  d'entr&eacute;e</h2>
+
+  <p class="c4">Vous pouvez g&eacute;n&eacute;rer des fichiers annexes
+  gr&acirc;ce &agrave; l'interface. Les fichiers de pluie peuvent
+  &ecirc;tre g&eacute;n&eacute;r&eacute;s gr&acirc;ce
+  &agrave; un tableau de valeurs, tandis que les fichiers de topographie et huv
+  peuvent &ecirc;tre cr&eacute;&eacute;s &agrave; partir d'un
+  interpr&eacute;teur de formules. Vous pouvez ainsi d&eacute;crire un
+  param&egrave;tre en fonction des variables x, y et t, par exemple z = sin(x +
+  y).</p>
+
+  <p class="c4">Avant de pouvoir g&eacute;n&eacute;rer les fichiers, il vous
+  faudra renseigner les param&egrave;tres du domaine (onglet Espace &amp;
+  Temps).</p>
+
+  <p class="c4">Notez que les variables x, y ou t peuvent ne pas &ecirc;tre
+  pertinentes (par exemple y dans FullSWOF_1D ou t dans un fichier de description
+  spatiale). Dans ce cas cette variable vaut 0.</p>
+
+  <p class="c4">L'interpr&eacute;teur reconna&icirc;t les fonctions suivantes
+  :</p>
+
+  <ul>
+    <li>
+      <p class="c4">abs(a) : Valeur absolue de a</p>
+    </li>
+
+    <li>
+      <p class="c4">acos(a) : Arc cosinus de a</p>
+    </li>
+
+    <li>
+      <p class="c4">asin(a) : Arc sinus de a</p>
+    </li>
+
+    <li>
+      <p class="c4">atan(a) : Arc tangente de a</p>
+    </li>
+
+    <li>
+      <p class="c4">atan2(x, y) : Composante theta des coordonn&eacute;es polaires
+      (r, theta) d'un point donn&eacute; en coordonn&eacute;es
+      cart&eacute;siennes (x, y)</p>
+    </li>
+
+    <li>
+      <p class="c4">cbrt(a) : Racine cubique de a</p>
+    </li>
+
+    <li>
+      <p class="c4">ceil(a) : Plus petit entier sup&eacute;rieur ou
+      &eacute;gal &agrave; a</p>
+    </li>
+
+    <li>
+      <p class="c4">cos(a) : Cosinus de a</p>
+    </li>
+
+    <li>
+      <p class="c4">cosh(a) : Cosinus hyperbolique de a</p>
+    </li>
+
+    <li>
+      <p class="c4">exp(a) : Exponentielle de a</p>
+    </li>
+
+    <li>
+      <p class="c4">expm1(a) : Exponentielle de a, moins un</p>
+    </li>
+
+    <li>
+      <p class="c4">floor(a) : Plus grand entier inf&eacute;rieur ou
+      &eacute;gal &agrave; a</p>
+    </li>
+
+    <li>
+      <p class="c4">hypot(x, y) : Racine carr&eacute;e de x carr&eacute; plus
+      y carr&eacute;</p>
+    </li>
+
+    <li>
+      <p class="c4">log(a) : Logarithme naturel de a</p>
+    </li>
+
+    <li>
+      <p class="c4">log10(a) : Logarithme d&eacute;cimal de a</p>
+    </li>
+
+    <li>
+      <p class="c4">max(a, b) : Maximum de a et b</p>
+    </li>
+
+    <li>
+      <p class="c4">min(a, b) : Minimum de a et b</p>
+    </li>
+
+    <li>
+      <p class="c4">pow(a, b) : a puissance b</p>
+    </li>
+
+    <li>
+      <p class="c4">random() : Nombre al&eacute;atoire dans l'intervalle [0, 1[</p>
+    </li>
+
+    <li>
+      <p class="c4">rint(a) : Arrondi de a</p>
+    </li>
+
+    <li>
+      <p class="c4">signum(a) : -1, 0 ou 1, suivant le signe de a</p>
+    </li>
+
+    <li>
+      <p class="c4">sin(a) : Sinus de a</p>
+    </li>
+
+    <li>
+      <p class="c4">sinh(a) : Sinus hyperbolique de a</p>
+    </li>
+
+    <li>
+      <p class="c4">sqrt(a) : Racine carr&eacute;e de a</p>
+    </li>
+
+    <li>
+      <p class="c4">tan(a) : Tangente de a</p>
+    </li>
+
+    <li>
+      <p class="c4">tanh(a) : Tangente hyperbolique de a</p>
+    </li>
+  </ul>
+
+  <h1 class="western">Calcul</h1>
+
+  <p>Pour lancer FullSWOF avec les param&egrave;tres du projet, vous devez tout
+  d'abord indiquer le chemin d'acc&egrave;s &agrave; l'ex&eacute;cutable
+  FullSWOF dans les pr&eacute;f&eacute;rences (onglet <i>'FullSWOF'</i>).</p>
+
+  <p>Vous pouvez ensuite lancer le calcul via <i>Fichier &gt; Lancer la
+  simulation</i></p>
+
+  <p>Les messages &eacute;mis par FullSWOF sont retransmis dans une console qui
+  vous indique aussi la progression du calcul et vous donne la possibilit&eacute;
+  d'interrompre le processus. Vous pouvez aussi choisir d'activer la visualisation en
+  direct du fichier pendant son calcul. Dans ce cas vous obtiendrez une visualisation du
+  fichier jusqu'au dernier pas de temps calcul&eacute;. Cette fonction est
+  toutefois susceptible de ralentir le calcul de FullSWOF. Elle peut &ecirc;tre
+  d&eacute;sactiv&eacute;e dans les
+  pr&eacute;f&eacute;rences.</p>
+
+  <h1 class="western">Visualisation des fichiers de r&eacute;sultat</h1>
+
+  <p>Vous pouvez visualiser un fichier de sortie calcul&eacute;
+  pr&eacute;c&eacute;demment par FullSWOF gr&acirc;ce &agrave;
+  la commande <i>Fichier &gt; Ouvrir un fichier de r&eacute;sultat</i></p>
+
+  <p>Cette fonction vous permet de visualiser uniquement les fichiers Gnuplot et VTK
+  g&eacute;n&eacute;r&eacute;s par FullSWOF_1D ou FullSWOF_2D. Ces
+  fichiers sont normalement nomm&eacute;s <i>huv_evolution</i>. Les fichiers
+  <i>huv_final</i> et <i>huv_initial</i> peuvent &ecirc;tre lus mais ne permettent
+  pas de voir l'&eacute;volution de la simulation.</p>
+
+  <h2 class="western">Fichiers VTK</h2>
+
+  <p>Les fichiers VTK produits par FullSWOF_2D peuvent &ecirc;tre lus, mais ils ne
+  contiennent pas la valeur temps des pas sauvegard&eacute;s. L'interface utilise
+  donc des valeurs par d&eacute;faut, souvent diff&eacute;rentes de celles
+  des fichiers Gnuplot. La m&ecirc;me simulation produira une visualisation
+  l&eacute;g&egrave;rement diff&eacute;rente, suivant le format du
+  fichier. Le format Gnuplot est recommand&eacute;.</p>
+
+  <h2 class="western">Visualisation spatiale</h2>
+
+  <p>Cet onglet vous permet d'obtenir une visualisation spatiale de la figure. Vous
+  pouvez animer la figure et contr&ocirc;ler l'animation &agrave; l'aide
+  des boutons en bas du panneau. L'animation n'est visible que si le fichier comporte
+  plusieurs pas de temps.</p>
+
+  <h2 class="western">&Eacute;volution aux limites</h2>
+
+  <p>Si le fichier comporte plusieurs pas de temps, les onglets d'&eacute;volution
+  seront activ&eacute;s. Ils vous permettent de voir des diagrammes montrant
+  l'&eacute;volution des donn&eacute;es en fonction du temps
+  &eacute;coul&eacute;. Les donn&eacute;es affichables pour chaque
+  limite sont le d&eacute;bit instantan&eacute;, le d&eacute;bit
+  cumul&eacute; et la hauteur d'eau.</p>
+
+  <h2 class="western">Manipulation des figures 3D</h2>
+
+  <p>Les fichiers g&eacute;n&eacute;r&eacute;s par FullSWOF_UI sont
+  repr&eacute;sent&eacute;s sous forme de figures 3D. Vous pouvez tourner la
+  figure &agrave; l'aide de la souris en maintenant le clic gauche
+  enfonc&eacute;. Pour d&eacute;placer la figure dans l'espace, maintenez la
+  molette enfonc&eacute;e et d&eacute;placez la souris. Pour zoomer ou
+  d&eacute;zoomer, utilisez la molette.</p>
+
+  <h2 class="western">Export de diagramme et ajout de donn&eacute;es</h2>
+
+  <p>Vous pouvez ajouter des donn&eacute;es aux diagrammes ou les exporter sous
+  forme de fichier image. Pour ceci, cliquez-droit sur le diagramme concern&eacute;
+  et choisissez le menu appropri&eacute;. Ces fonctions ne sont pas disponibles
+  pour les figures 3D.</p>
+
+  <p>Les formats support&eacute;s pour l'export d'image d&eacute;pendent de
+  votre configuration Java, mais les formats PNG (conseill&eacute;), GIF et JPEG
+  sous normalement toujours support&eacute;s. Le format choisi d&eacute;pend
+  de l'extension que vous indiquez au moment d'enregistrer le fichier.</p>
+
+  <p>Pour ajouter des donn&eacute;es au diagramme, vous devez disposer d'un fichier
+  de donn&eacute;es comportant sur chaque ligne les coordonn&eacute;es d'un
+  point sous la forme x y. Vous pouvez choisir d'afficher ces donn&eacute;es sous
+  forme de ligne ou de nuage de point. Vous pouvez ensuite retirer ces
+  donn&eacute;es via le menu du diagramme (clic droit sur le diagramme).</p>
+
+  <h1 class="western">Pr&eacute;f&eacute;rences de FullSWOF_UI</h1>
+
+  <p>Vous trouverez les pr&eacute;f&eacute;rences de FullSWOF_UI sous
+  <i>Configuration &gt; Pr&eacute;f&eacute;rences</i></p>
+
+  <p>Les pr&eacute;f&eacute;rences sont enregistr&eacute;es dans votre
+  r&eacute;pertoire utilisateur, dans un r&eacute;pertoire cach&eacute;
+  nomm&eacute; <i>.fullswof_ui</i></p>
+
+  <h2 class="western">G&eacute;n&eacute;ral</h2>
+
+  <p>La langue par d&eacute;faut de FullSWOF_UI est celle du syst&egrave;me,
+  si la traduction est disponible (pour l'instant fran&ccedil;ais et anglais
+  uniquement), ou l'anglais sinon. Vous pouvez toutefois choisir une des langues
+  disponibles. Ce choix ne sera effectif qu'apr&egrave;s avoir
+  red&eacute;marr&eacute; l'interface.</p>
+
+  <p>En cochant la case <i>'Inclure la description'</i>, FullSWOF ajoutera pour chaque
+  param&egrave;tre une description au sein du fichier <i>parameters.txt</i> du
+  projet. Sans cela le fichier cr&eacute;&eacute; sera limit&eacute;
+  aux balises et valeurs associ&eacute;es.</p>
+
+  <h2 class="western">FullSWOF</h2>
+
+  <p>Cet onglet vous permet d'indiquer la commande &agrave; utiliser pour effectuer
+  le calcul, ainsi que la configuration utilis&eacute;e lors de la
+  cr&eacute;ation d'un nouveau projet.</p>
+
+  <h2 class="western">Visualisation</h2>
+
+  <p>Cet onglet vous permet de param&eacute;trer la visualisation. Vous pouvez
+  notamment choisir de visualiser les fichiers en cours de calcul par FullSWOF. Cette
+  fonction peut toutefois ralentir le calcul.</p>
+
+  <p>Vous pouvez aussi choisir les donn&eacute;es &agrave; afficher sur la
+  figure de visualisation spatiale, ainsi que la couleur associ&eacute;e
+    &agrave; chaque type de donn&eacute;e.</p>
+  
+  <p>Attention, nous avons remarqu&eacute; quelques probl&egrave;mes li&eacute;s &agrave; cette option avec Windows. Nous avons pris la d&eacute;cision de la d&eacute;sactiver par d&eacute;faut.</p>
+</body>
+</html>
+
